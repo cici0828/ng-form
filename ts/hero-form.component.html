@@ -1,0 +1,40 @@
+<div class='container' #spy2>
+    <div [hidden]="submitted">
+        <h1>Hero Form</h1>
+        <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+            <div class='form-group'>
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name1="ngModel">
+                <div [hidden]="name1.valid || name1.pristine" class="alert alert-danger">
+                    Name is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="alterEgo">alterEgo</label>
+                <input type="text" class="form-control" id="alterEgo" [(ngModel)]="model.alterEgo" name="alterEgo" />
+            </div>
+            <div class="form-group">
+                <label for="power">power</label>
+                <select class="form-control" [(ngModel)]="model.power" id="power" name="power" required #power="ngModel">
+                    <option *ngFor="let power of powers" [value]="power">{{power}}</option>
+                </select>
+                <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
+                    Power is required
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default" [disabled]="!heroForm.form.valid">Submit</button>
+            <button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>
+            <!-- <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name"> TODO: remove this: {{model.name}}
+ -->
+            <!--
+            <input type="text" class="form-control" id="name" required [ngModel]="model.name" name="name"
+            (ngModelChange)="onMy($event)"
+            > -->
+            <!--             <input type="text" class="form-control" id="name" required [ngModel]="model.name" name="name"
+            (ngModelChange)="model.name=$event" ref-spy>
+            <br>TODO: remove this1: {{model.name}}
+            <br>{{spy.className}} -->
+        </form>
+    </div>
+    <br>
+</div>
